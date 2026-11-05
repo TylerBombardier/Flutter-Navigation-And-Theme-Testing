@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Student Directory',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const StatefulHomeScreen(),
         '/about': (context) => const AboutScreen(),
         '/student': (context) => const StudentDetailScreen()
       },
