@@ -4,7 +4,14 @@ import '../models/student.dart';
 
 
 class StatefulHomeScreen extends StatefulWidget {
-  const StatefulHomeScreen({super.key});
+  const StatefulHomeScreen({
+    super.key,
+    required this.currentThemeMode,
+    required this.onToggleTheme
+  });
+
+  final ThemeMode currentThemeMode;
+  final VoidCallback onToggleTheme;
 
   @override
   State<StatefulHomeScreen> createState() => _StatefulHomeScreenState();
@@ -59,10 +66,17 @@ class _StatefulHomeScreenState extends State<StatefulHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = widget.currentThemeMode == ThemeMode.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Student Directory'),
         actions: [
+          IconButton(
+            icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+            onPressed: widget.onToggleTheme,
+            tooltip: "Theme Change",
+          ),
           IconButton(
             icon: const Icon(Icons.info_outline),
             tooltip: 'About',
@@ -81,6 +95,7 @@ class _StatefulHomeScreenState extends State<StatefulHomeScreen> {
             child: ListTile(
               title: Text(student.name),
               subtitle: Text(student.program),
+              trailing: Text(student.id),
               onTap: () {
                 Navigator.pushNamed(
                   context,

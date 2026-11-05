@@ -14,6 +14,17 @@ class StudentDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("${student.name} Details"),
       ),
-    );
+      body:
+        Padding(padding: EdgeInsetsGeometry.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Name: ${student.name}"),
+              Text("Program: ${student.program}"),
+              Text("Code: ${student.id}")
+            ]
+          ),
+        )
+      );
   }
 }
