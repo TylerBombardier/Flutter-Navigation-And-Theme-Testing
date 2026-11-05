@@ -13,8 +13,49 @@ class StatefulHomeScreen extends StatefulWidget {
 class _StatefulHomeScreenState extends State<StatefulHomeScreen> {
 
   final List<Student> students = [
-    Student(name: "tyler", program: "programming", id: "mad511")
+    Student(
+      name: "New Student 1",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
+    Student(
+      name: "New Student 2",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
+    Student(
+      name: "New Student 3",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
+    Student(
+      name: "New Student 4",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
+    Student(
+      name: "New Student 4",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
+    Student(
+      name: "New Student 5",
+      program: "Cross Platform Development",
+      id: "MAD 512",
+    ),
   ];
+
+  void _addNewStudent() {
+    setState(() {
+      students.add(
+        Student(
+          name: "New Student ${students.length}",
+          program: "Cross Platform Development",
+          id: "MAD 512",
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +81,22 @@ class _StatefulHomeScreenState extends State<StatefulHomeScreen> {
             child: ListTile(
               title: Text(student.name),
               subtitle: Text(student.program),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  '/student',
+                  arguments: student
+                );
+              },
             )
           );
         }
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addNewStudent,
+        tooltip: 'Add Student',
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

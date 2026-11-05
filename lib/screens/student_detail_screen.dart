@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../models/student.dart';
+
 class StudentDetailScreen extends StatelessWidget {
   const StudentDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
 
+    final student = ModalRoute.of(context)!.settings.arguments as Student;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("${student.name} Details"),
+      ),
     );
   }
 }
